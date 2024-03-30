@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="The weather page by JamesTGH">
+    <meta name="author" content="JamesTGH">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>JamesTGH: Weather</title>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body class="d-flex flex-column h-100 bg-dark">
+    <header>
+      <nav class="navbar navbar-dark navbar-expand-xxl fixed-top bg-black">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img class="d-block" src="assets/images/jamestgh-ascii.png" alt="jamestgh-ascii" width="279" height="46">
+          </a>
+          <button class="navbar-toggler collapsed border border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav">
+              <li class="nav-item display-6 ps-4 pe-4" id="header">
+                <a class="nav-link" href="weather">/weather</a>
+              </li>
+              <li class="nav-item display-6 ps-4 pe-4" id="header">
+                <a class="nav-link" href="https://github.com/jamesbruddick">/github</a>
+              </li>
+              <li class="nav-item display-6 ps-4 pe-4" id="header">
+                <a class="nav-link" href="https://gist.github.com/jamesbruddick">/gists</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container-lg bg-black my-2 px-2 py-2">
+      <nav>
+        <div class="nav nav-underline border border-secondary gap-0 mb-2" id="nav-tab" role="tablist">
+          <button class="nav-link px-2 py-1 active" id="nav-radar-tab" data-bs-toggle="tab" data-bs-target="#nav-radar" type="button" role="tab" aria-controls="nav-radar" aria-selected="true">Radar</button>
+          <button class="nav-link px-2 py-1" id="nav-active-alerts-tab" data-bs-toggle="tab" data-bs-target="#nav-active-alerts" type="button" role="tab" aria-controls="nav-active-alerts" aria-selected="true">Active Alerts</button>
+          <button class="nav-link px-2 py-1" id="nav-spc-outlook-tab" data-bs-toggle="tab" data-bs-target="#nav-spc-outlook" type="button" role="tab" aria-controls="nav-spc-outlook" aria-selected="false">SPC Outlook</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-radar" role="tabpanel" aria-labelledby="nav-radar-tab" tabindex="0">
+          <div class="row g-1">
+            <div class="col-6">
+              <a href="https://radar.weather.gov/ridge/standard/CONUS_0.gif" target="_blank">
+                <img class="d-block w-100 h-100 border border-2 border-white" src="https://radar.weather.gov/ridge/standard/CONUS_0.gif" alt="NWS Radar CONUS Latest Image" width="600" height="392">
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="https://radar.weather.gov/ridge/standard/CONUS_loop.gif" target="_blank">
+                <img class="d-block w-100 h-100 border border-2 border-white" src="https://radar.weather.gov/ridge/standard/CONUS_loop.gif" alt="NWS Radar CONUS Latest Image Loop" width="600" height="392">
+              </a>
+            </div>
+          </div>
+          <hr class="border border-2 my-2">
+          <div id="wx-radar" class="row g-1">
+            <div class="col-6">
+              <a id="radar-image-href" href="#" target="_blank">
+                <img id="radar-image" class="d-block w-100 h-100 border border-2 border-white" src="#" alt="NWS Radar Latest Image" width="600" height="550">
+              </a>
+            </div>
+            <div class="col-6">
+              <a id="radar-loop-href" href="#" target="_blank">
+                <img id="radar-loop" class="d-block w-100 h-100 border border-2 border-white" src="#" alt="NWS Radar Latest Image Loop" width="600" height="550">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="nav-active-alerts" role="tabpanel" aria-labelledby="nav-active-alerts-tab" tabindex="0">
+          <div id="map" style="width:100%;height:500px;"></div>
+          <div id="wx-alerts"></div>
+        </div>
+        <div class="tab-pane fade" id="nav-spc-outlook" role="tabpanel" aria-labelledby="nav-spc-outlook-tab" tabindex="0">
+          <div class="row g-1 mb-1">
+            <div class="col-6">
+              <div class="carousel carousel-dark slide border border-2 border-white" id="SPCDay1Outlook" data-bs-ride="false">
+                <div class="carousel-indicators">
+                  <button class="active" type="button" data-bs-target="#SPCDay1Outlook" data-bs-slide-to="0" aria-current="true" aria-label="SPC Day 1 Convective Outlook"></button>
+                  <button type="button" data-bs-target="#SPCDay1Outlook" data-bs-slide-to="1" aria-label="SPC Day 1 Tornado Outlook"></button>
+                  <button type="button" data-bs-target="#SPCDay1Outlook" data-bs-slide-to="2" aria-label="SPC Day 1 Wind Outlook"></button>
+                  <button type="button" data-bs-target="#SPCDay1Outlook" data-bs-slide-to="3" aria-label="SPC Day 1 Hail Outlook"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day1otlk.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif" alt="SPC Day 1 Convective Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day1probotlk_torn.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day1probotlk_torn.gif" alt="SPC Day 1 Tornado Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day1probotlk_wind.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day1probotlk_wind.gif" alt="SPC Day 1 Wind Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day1probotlk_hail.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day1probotlk_hail.gif" alt="SPC Day 1 Hail Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#SPCDay1Outlook" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#SPCDay1Outlook" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="carousel carousel-dark slide border border-2 border-white" id="SPCDay2Outlook" data-bs-ride="false">
+                <div class="carousel-indicators">
+                  <button class="active" type="button" data-bs-target="#SPCDay2Outlook" data-bs-slide-to="0" aria-current="true" aria-label="SPC Day 2 Convective Outlook"></button>
+                  <button type="button" data-bs-target="#SPCDay2Outlook" data-bs-slide-to="1" aria-label="SPC Day 2 Tornado Outlook"></button>
+                  <button type="button" data-bs-target="#SPCDay2Outlook" data-bs-slide-to="2" aria-label="SPC Day 2 Wind Outlook"></button>
+                  <button type="button" data-bs-target="#SPCDay2Outlook" data-bs-slide-to="3" aria-label="SPC Day 2 Hail Outlook"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day2otlk.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif" alt="SPC Day 2 Convective Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day2probotlk_torn.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day2probotlk_torn.gif" alt="SPC Day 2 Tornado Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day2probotlk_wind.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day2probotlk_wind.gif" alt="SPC Day 2 Wind Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="https://www.spc.noaa.gov/products/outlook/day2probotlk_hail.gif" target="_blank">
+                      <img class="d-block w-100 h-100" src="https://www.spc.noaa.gov/products/outlook/day2probotlk_hail.gif" alt="SPC Day 2 Hail Outlook" width="815" height="555">
+                    </a>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#SPCDay2Outlook" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#SPCDay2Outlook" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row g-1 mb-1">
+            <div class="col-6">
+              <a href="https://www.spc.noaa.gov/products/outlook/day3otlk.gif" target="_blank">
+                <img class="d-block w-100 h-100 border border-2 border-white" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif" alt="SPC Day 3 Convective Outlook" width="815" height="555">
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="https://www.spc.noaa.gov/products/exper/day4-8/day4prob.gif" target="_blank">
+                <img class="d-block w-100 h-100 border border-2 border-white" src="https://www.spc.noaa.gov/products/exper/day4-8/day4prob.gif" alt="SPC Day 4 Convective Outlook" width="815" height="555">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="d-flex flex-wrap align-items-center justify-content-between mt-auto py-2 px-3 bg-black">
+      <p class="col-md-4 mb-0 text-secondary">Copyright © 2014</p>
+      <a class="d-flex align-items-center justify-content-center" href="/">
+        <img src="assets/images/jamestgh-ascii.png" alt="jamestgh-ascii" width="157" height="26">
+      </a>
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link px-2" href="weather">/weather</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2" href="https://github.com/jamesbruddick">/github</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2" href="https://gist.github.com/jamesbruddick">/gists</a>
+        </li>
+      </ul>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/weather.js"></script>
+  </body>
+</html>
