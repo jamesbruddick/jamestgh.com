@@ -1,67 +1,67 @@
 * {
-	touch-action: manipulation;
+  touch-action: manipulation;
 }
 
 ::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 html {
-	scrollbar-width: none;
+  scrollbar-width: none;
 }
 
 body {
-	padding-top: 74px;
+  padding-top: 74px;
 }
 
 .navbar {
-	border-bottom: 2px solid #33437D;
+  border-bottom: 2px solid #33437D;
 }
 
 .nav-item {
-	font-family: monospace;
-	font-weight: bold;
+  font-family: monospace;
+  font-weight: bold;
 }
 
 .nav-link {
-	color: #33437D;
+  color: #33437D;
 }
 
 .nav-link:hover {
-	color: #007BFF;
+  color: #007BFF;
 }
 
 button.nav-link.active {
-	background-color: #212529 !important;
-	color: #FFFFFF !important;
+  background-color: #212529 !important;
+  color: #FFFFFF !important;
 }
 
 main {
-	font-variant-numeric: tabular-nums;
-	border: 1px solid #33437D;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid #33437D;
 }
 
 footer {
-	border-top: 2px solid #33437D;
+  border-top: 2px solid #33437D;
 }
 
 canvas#connectedclients {
-	background-color: #000000;
-	vertical-align: bottom;
-	cursor: none;
-	width: calc(100% - 16px);
-	height: calc(100% - 16px);
-	margin: 8px;
+  background-color: #000000;
+  vertical-align: bottom;
+  cursor: none;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  margin: 8px;
 }
 
 @media only screen and (min-width: 1400px) {
-	body {
-		padding-top: 82px;
-	}
-	#header.nav-item {
-		border-left: 4px solid #181818;
-	}
-	#header.nav-item:last-child {
-		border-right: 4px solid #181818;
-	}
+  body {
+    padding-top: 82px;
+  }
+  #header.nav-item {
+    border-left: 4px solid #181818;
+  }
+  #header.nav-item:last-child {
+    border-right: 4px solid #181818;
+  }
 }

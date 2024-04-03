@@ -55,7 +55,7 @@ if (!locationParam) {
 		const wxMetadata = await pointsMetadata(locationParam.split(','));
 		const wxPointActiveAlerts = await pointActiveAlerts(locationParam.split(','));
 		const wxAreaActiveAlerts = await areaActiveAlerts(wxMetadata.properties.relativeLocation.properties.state);
-		const wxHazardsMetadata = await hazardsMetdata('/assets/json/hazardsmetadata.json');
+		const wxHazardsMetadata = await hazardsMetdata('/json/hazardsmetadata.json');
 
 		$(document).ready(function() {
 			if (wxPointActiveAlerts) {

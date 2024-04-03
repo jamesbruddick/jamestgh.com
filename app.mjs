@@ -90,6 +90,10 @@ app.get('/weather', (req, res) => {
 	res.sendFile(__dirname + '/views/weather.html');
 });
 
+app.get('/noscript', (req, res) => {
+	res.sendFile(__dirname + '/views/noscript.html');
+});
+
 app.use('/robots.txt', (req, res) => {
 	res.type('text/plain');
 	res.send('User-agent: *\nDisallow: /');
